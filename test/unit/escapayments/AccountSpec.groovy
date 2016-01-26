@@ -1,6 +1,7 @@
 package escapayments
 
 import grails.test.mixin.TestFor
+import org.joda.money.Money
 import spock.lang.Specification
 
 /**
@@ -85,6 +86,6 @@ class AccountSpec extends Specification {
 
     void "starting balance is 200 pounds"() {
         expect:
-        200 == account.balance
+        Money.parse("GBP 200") == account.balance
     }
 }
