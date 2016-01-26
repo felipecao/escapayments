@@ -27,8 +27,14 @@ class TransactionSpec extends Specification {
     }
 
     void "a Transaction cannot be saved without a 'to' Account"() {
-        expect: "fix me"
-        true == false
+        given:
+        Transaction transaction = new Transaction()
+
+        when:
+        transaction.validate()
+
+        then:
+        "nullable" == transaction.errors["to"]
     }
 
     void "a Transaction cannot be saved without an amount"() {
