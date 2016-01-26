@@ -34,4 +34,9 @@ class TransactionSpec extends Specification {
         expect: "fix me"
         true == false
     }
+
+    void "a Transaction can be saved if it has both 'from' and 'to' accounts, and the amount does not exceed the balance of the 'from' account"() {
+        expect: "fix me"
+        true == false
+    }
 }
