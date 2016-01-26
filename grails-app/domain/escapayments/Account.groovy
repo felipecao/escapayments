@@ -7,5 +7,6 @@ class Account {
 
     static constraints = {
         name blank: false
+        email blank: false
     }
 }
