@@ -39,9 +39,6 @@ class AccountSpec extends Specification {
     }
 
     void "email cannot be null"() {
-        given:
-        account.email = "   "
-
         when:
         account.validate()
 
