@@ -29,8 +29,15 @@ class AccountSpec extends Specification {
     }
 
     void "name cannot be blank"() {
-        expect:"fix me"
-        true == false
+        given:
+        Account account = new Account(name: "  ")
+
+        when:
+        account.validate()
+
+        then:
+        account.hasErrors()
+        "blank" == account.errors["name"]
     }
 
     void "email cannot be null"() {
