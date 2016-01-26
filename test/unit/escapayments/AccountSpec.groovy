@@ -15,6 +15,33 @@ class AccountSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
+    void "name cannot be null"() {
+        expect:"fix me"
+        true == false
+    }
+
+    void "name cannot be blank"() {
+        expect:"fix me"
+        true == false
+    }
+
+    void "email cannot be null"() {
+        expect:"fix me"
+        true == false
+    }
+
+    void "email cannot be blank"() {
+        expect:"fix me"
+        true == false
+    }
+
+    void "email must be well-formed"() {
+        expect:"fix me"
+        true == false
+    }
+
+    void "starting balance is 200 pounds"() {
+        expect:"fix me"
+        true == false
     }
 }
