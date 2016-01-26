@@ -2,6 +2,7 @@ package escapayments
 
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
+import org.joda.money.Money
 import spock.lang.Specification
 
 /**
@@ -44,12 +45,28 @@ class TransactionSpec extends Specification {
     }
 
     void "a Transaction cannot be saved if it exceeds the balance of the 'from' account"() {
-        expect: "fix me"
-        true == false
+        given:
+        transaction.from = fromAccount
+        transaction.to = toAccount
+        transaction.amount = Money.parse("GBP 300")
+
+        when:
+        transaction.validate()
+
+        then:
+        "from.balanceExceeded" == transaction.errors["amount"]
     }
 
     void "a Transaction can be saved if it has both 'from' and 'to' accounts, and the amount does not exceed the balance of the 'from' account"() {
         expect: "fix me"
         true == false
+    }
+
+    private Account getFromAccount(){
+        return new Account(name: "from", email: "from@account.com").save(failOnError: true)
+    }
+
+    private Account getToAccount(){
+        return new Account(name: "to", email: "to@account.com").save(failOnError: true)
     }
 }
