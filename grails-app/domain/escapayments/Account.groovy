@@ -6,6 +6,6 @@ class Account {
     String email
 
     static constraints = {
-        name blank: false, nullable: false
+        name blank: false
     }
 }
