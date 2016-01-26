@@ -38,8 +38,14 @@ class TransactionSpec extends Specification {
     }
 
     void "a Transaction cannot be saved without an amount"() {
-        expect: "fix me"
-        true == false
+        given:
+        Transaction transaction = new Transaction()
+
+        when:
+        transaction.validate()
+
+        then:
+        "nullable" == transaction.errors["amount"]
     }
 
     void "a Transaction cannot be saved if it exceeds the balance of the 'from' account"() {
