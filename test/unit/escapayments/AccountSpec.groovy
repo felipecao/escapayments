@@ -60,8 +60,15 @@ class AccountSpec extends Specification {
     }
 
     void "email must be well-formed"() {
-        expect:"fix me"
-        true == false
+        given:
+        account.email = "email@example"
+
+        when:
+        account.validate()
+
+        then:
+        account.hasErrors()
+        "email" == account.errors["email"]
     }
 
     void "an Account with non-blank name and valid e-mail address is valid"() {
