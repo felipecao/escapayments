@@ -72,8 +72,15 @@ class AccountSpec extends Specification {
     }
 
     void "an Account with non-blank name and valid e-mail address is valid"() {
-        expect:"fix me"
-        true == false
+        given:
+        account.name = "test account"
+        account.email = "email@example.com"
+
+        when:
+        account.validate()
+
+        then:
+        !account.hasErrors()
     }
 
     void "starting balance is 200 pounds"() {
