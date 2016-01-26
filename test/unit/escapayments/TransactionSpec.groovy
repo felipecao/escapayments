@@ -46,8 +46,8 @@ class TransactionSpec extends Specification {
 
     void "a Transaction cannot be saved if it exceeds the balance of the 'from' account"() {
         given:
-        transaction.from = fromAccount
-        transaction.to = toAccount
+        transaction.from = buildFromAccount()
+        transaction.to = buildToAccount()
         transaction.amount = Money.parse("GBP 201")
 
         when:
@@ -58,15 +58,29 @@ class TransactionSpec extends Specification {
     }
 
     void "a Transaction can be saved if it has both 'from' and 'to' accounts, and the amount does not exceed the balance of the 'from' account"() {
-        expect: "fix me"
-        true == false
+        given:
+        Account from = buildFromAccount()
+        Account to = buildToAccount()
+
+        and:
+        transaction.from = from
+        transaction.to = to
+        transaction.amount = Money.parse("GBP 200")
+
+        when:
+        Transaction savedTransaction = transaction.save(failOnError: true)
+
+        then:
+        from == savedTransaction.from
+        to == savedTransaction.to
+        Money.parse("GBP 200") == transaction.amount
     }
 
-    private Account getFromAccount(){
+    private Account buildFromAccount(){
         return new Account(name: "from", email: "from@account.com").save(failOnError: true)
     }
 
-    private Account getToAccount(){
+    private Account buildToAccount(){
         return new Account(name: "to", email: "to@account.com").save(failOnError: true)
     }
 }
