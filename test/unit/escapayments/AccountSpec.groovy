@@ -30,7 +30,8 @@ class AccountSpec extends Specification {
 
     void "name cannot be blank"() {
         given:
-        Account account = new Account(name: "  ")
+        Account account = new Account()
+        account.name = "   "
 
         when:
         account.validate()
