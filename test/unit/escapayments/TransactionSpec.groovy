@@ -11,14 +11,15 @@ import spock.lang.Specification
 @Mock(Account)
 class TransactionSpec extends Specification {
 
+    Transaction transaction
+
     def setup() {
         mockForConstraintsTests(Transaction)
+
+        transaction = new Transaction()
     }
 
     void "a Transaction cannot be saved without a 'from' Account"() {
-        given:
-        Transaction transaction = new Transaction()
-
         when:
         transaction.validate()
 
@@ -27,9 +28,6 @@ class TransactionSpec extends Specification {
     }
 
     void "a Transaction cannot be saved without a 'to' Account"() {
-        given:
-        Transaction transaction = new Transaction()
-
         when:
         transaction.validate()
 
@@ -38,9 +36,6 @@ class TransactionSpec extends Specification {
     }
 
     void "a Transaction cannot be saved without an amount"() {
-        given:
-        Transaction transaction = new Transaction()
-
         when:
         transaction.validate()
 
