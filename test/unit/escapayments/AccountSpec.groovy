@@ -84,7 +84,7 @@ class AccountSpec extends Specification {
     }
 
     void "starting balance is 200 pounds"() {
-        expect:"fix me"
-        true == false
+        expect:
+        200 == account.balance
     }
 }
