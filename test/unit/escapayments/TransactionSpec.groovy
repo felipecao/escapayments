@@ -15,9 +15,6 @@ class TransactionSpec extends Specification {
         mockForConstraintsTests(Transaction)
     }
 
-    def cleanup() {
-    }
-
     void "a Transaction cannot be saved without a 'from' Account"() {
         given:
         Transaction transaction = new Transaction()
