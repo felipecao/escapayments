@@ -64,6 +64,11 @@ class AccountSpec extends Specification {
         true == false
     }
 
+    void "an Account with non-blank name and valid e-mail address is valid"() {
+        expect:"fix me"
+        true == false
+    }
+
     void "starting balance is 200 pounds"() {
         expect:"fix me"
         true == false
