@@ -48,7 +48,7 @@ class TransactionSpec extends Specification {
         given:
         transaction.from = fromAccount
         transaction.to = toAccount
-        transaction.amount = Money.parse("GBP 300")
+        transaction.amount = Money.parse("GBP 201")
 
         when:
         transaction.validate()
