@@ -48,8 +48,15 @@ class AccountSpec extends Specification {
     }
 
     void "email cannot be blank"() {
-        expect:"fix me"
-        true == false
+        given:
+        account.email = "   "
+
+        when:
+        account.validate()
+
+        then:
+        account.hasErrors()
+        "blank" == account.errors["email"]
     }
 
     void "email must be well-formed"() {
