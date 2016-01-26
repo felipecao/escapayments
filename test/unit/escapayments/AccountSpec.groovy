@@ -72,20 +72,22 @@ class AccountSpec extends Specification {
         "email" == account.errors["email"]
     }
 
-    void "an Account with non-blank name and valid e-mail address is valid"() {
+    void "starting balance is 200 pounds"() {
+        expect:
+        Money.parse("GBP 200") == account.balance
+    }
+
+    void "an Account with non-blank name and valid e-mail address is valid and starts with GBP 200"() {
         given:
         account.name = "test account"
         account.email = "email@example.com"
 
         when:
-        account.validate()
+        Account savedAccount = account.save(failOnError: true)
 
         then:
-        !account.hasErrors()
-    }
-
-    void "starting balance is 200 pounds"() {
-        expect:
-        Money.parse("GBP 200") == account.balance
+        "test account" == savedAccount.name
+        "email@example.com" == savedAccount.email
+        Money.parse("GBP 200") == savedAccount.balance
     }
 }
