@@ -115,3 +115,6 @@ log4j.main = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+// mail plugin configs
+grails.mail.disabled=true
