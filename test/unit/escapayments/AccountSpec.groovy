@@ -9,17 +9,15 @@ import spock.lang.Specification
 @TestFor(Account)
 class AccountSpec extends Specification {
 
+    Account account
+
     def setup() {
         mockForConstraintsTests(Account)
-    }
 
-    def cleanup() {
+        account = new Account()
     }
 
     void "name cannot be null"() {
-        given:
-        Account account = new Account()
-
         when:
         account.validate()
 
@@ -30,7 +28,6 @@ class AccountSpec extends Specification {
 
     void "name cannot be blank"() {
         given:
-        Account account = new Account()
         account.name = "   "
 
         when:
