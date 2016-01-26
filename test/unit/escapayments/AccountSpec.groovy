@@ -1,7 +1,6 @@
 package escapayments
 
 import grails.test.mixin.TestFor
-import org.joda.money.Money
 import spock.lang.Specification
 
 /**
@@ -74,7 +73,7 @@ class AccountSpec extends Specification {
 
     void "starting balance is 200 pounds"() {
         expect:
-        Money.parse("GBP 200") == account.balance
+        TestInputs.pounds(200) == account.balance
     }
 
     void "an Account with non-blank name and valid e-mail address is valid and starts with GBP 200"() {
@@ -88,6 +87,6 @@ class AccountSpec extends Specification {
         then:
         "test account" == savedAccount.name
         "email@example.com" == savedAccount.email
-        Money.parse("GBP 200") == savedAccount.balance
+        TestInputs.pounds(200) == savedAccount.balance
     }
 }
