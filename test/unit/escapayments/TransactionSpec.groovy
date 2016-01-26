@@ -15,6 +15,23 @@ class TransactionSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
+    void "a Transaction cannot be saved without a 'from' Account"() {
+        expect: "fix me"
+        true == false
+    }
+
+    void "a Transaction cannot be saved without a 'to' Account"() {
+        expect: "fix me"
+        true == false
+    }
+
+    void "a Transaction cannot be saved without an amount"() {
+        expect: "fix me"
+        true == false
+    }
+
+    void "a Transaction cannot be saved if it exceeds the balance of the 'from' account"() {
+        expect: "fix me"
+        true == false
     }
 }
