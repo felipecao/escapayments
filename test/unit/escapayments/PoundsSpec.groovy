@@ -8,7 +8,7 @@ import spock.lang.Specification
  */
 class PoundsSpec extends Specification {
 
-    def "amount returns a money instance with the specified value"(){
+    def "amount returns a money instance of 200"(){
         expect:
         Money.parse("GBP 200") == Pounds.amount(200)
     }
