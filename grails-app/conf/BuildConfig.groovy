@@ -40,6 +40,11 @@ grails.project.dependency.resolution = {
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
         test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
         compile 'org.joda:joda-money:0.10.0'
+
+        // dependencies for running Geb
+        test 'org.gebish:geb-spock:0.12.2'
+        test "org.seleniumhq.selenium:selenium-firefox-driver:2.49.1"
+        test "org.seleniumhq.selenium:selenium-chrome-driver:2.49.1"
     }
 
     plugins {
@@ -58,6 +63,7 @@ grails.project.dependency.resolution = {
         runtime ":jquery:1.11.1"
 
         compile "org.grails.plugins:mail:1.0.7"
+        test ":geb:0.12.2"
 
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.9.0"
