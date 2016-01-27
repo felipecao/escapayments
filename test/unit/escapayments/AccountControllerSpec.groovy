@@ -8,6 +8,14 @@ import spock.lang.*
 @Mock([Account, Transaction])
 class AccountControllerSpec extends Specification {
 
+    TransactionService transactionServiceMock
+
+    def setup(){
+        transactionServiceMock = Mock()
+
+        controller.transactionService = transactionServiceMock
+    }
+
     def populateValidParams(params) {
         assert params != null
         params["name"] = 'some name'
@@ -181,5 +189,15 @@ class AccountControllerSpec extends Specification {
 
         then:
         view == '/account/pay'
+    }
+
+    void "submitPay invokes TransactionService and sends back to the previous page with a success message"(){
+        when:
+        controller.submitPay()
+
+        then:
+        Transaction.count() == 1
+        response.redirectedUrl == '/account/pay'
+        flash.message != null
     }
 }
