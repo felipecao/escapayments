@@ -8,13 +8,18 @@ class TransactionService {
 
     def notificationService
 
-    def transferAmountFromAccountToAnotherAccount(Money amount, Account from, Account to) {
+    Transaction transferAmountFromAccountToAnotherAccount(Money amount, Account from, Account to) {
 
         Transaction transaction = new Transaction(
                 from: from,
                 to: to,
                 amount: amount
         )
+
+        if(!transaction.validate()){
+            transaction.discard()
+            return transaction
+        }
 
         transaction.save()
 
