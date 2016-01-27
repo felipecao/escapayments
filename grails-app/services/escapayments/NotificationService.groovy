@@ -14,18 +14,22 @@ class NotificationService {
     }
 
     private void notifyCredit(String email, Money amount){
-        mailService.sendMail {
-            to email
-            subject "Money credited to your account"
-            body "Amount credited: ${amount.toString()}"
-        }
+        notify(email, amount, Operation.CREDIT)
     }
 
     private void notifyDebit(String email, Money amount){
+        notify(email, amount, Operation.DEBIT)
+    }
+
+    private void notify(String email, Money amount, Operation operation){
         mailService.sendMail {
             to email
-            subject "Money debited to your account"
-            body "Amount debited: ${amount.toString()}"
+            subject "Money ${operation.name().toLowerCase()}ed to your account"
+            body "Amount ${operation.name().toLowerCase()}ed: ${amount.toString()}"
         }
     }
+}
+
+enum Operation {
+    CREDIT, DEBIT
 }
