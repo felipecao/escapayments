@@ -9,6 +9,7 @@ class TransactionService {
     def notificationService
 
     def transferAmountFromAccountToAnotherAccount(Money amount, Account from, Account to) {
-
+        from.decrease(amount)
+        to.increase(amount)
     }
 }

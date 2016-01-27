@@ -122,7 +122,7 @@ class AccountSpec extends Specification {
         Pounds.amount(170) == account.balance
     }
 
-    void "decrease decreases the balance by 20 and save keeps the updated balance"(){
+    void "decrease decreases the balance by 20 and save keeps the balance updated"(){
         given:
         account.name = "test account"
         account.email = "email@example.com"
@@ -133,5 +133,50 @@ class AccountSpec extends Specification {
 
         then:
         Pounds.amount(180) == savedAccount.balance
+    }
+
+    void "increase (guess what?) increase the balance by 50"(){
+        when:
+        account.increase(Pounds.amount(50))
+
+        then:
+        Pounds.amount(250) == account.balance
+    }
+
+    void "balance remains the same when increase by 0"(){
+        when:
+        account.increase(Pounds.amount(0))
+
+        then:
+        Pounds.amount(200) == account.balance
+    }
+
+    void "balance remains the same when increase by negative number"(){
+        when:
+        account.increase(Pounds.amount(-10))
+
+        then:
+        Pounds.amount(200) == account.balance
+    }
+
+    void "decrease increase the balance by 30"(){
+        when:
+        account.increase(Pounds.amount(30))
+
+        then:
+        Pounds.amount(230) == account.balance
+    }
+
+    void "increase increases the balance by 20 and save keeps the balance updated"(){
+        given:
+        account.name = "test account"
+        account.email = "email@example.com"
+        account.increase(Pounds.amount(20))
+
+        when:
+        Account savedAccount = account.save(failOnError: true)
+
+        then:
+        Pounds.amount(220) == savedAccount.balance
     }
 }
