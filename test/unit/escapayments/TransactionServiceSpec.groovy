@@ -15,6 +15,7 @@ class TransactionServiceSpec extends Specification {
     NotificationService notificationServiceMock = Mock()
 
     def setup() {
+        service.notificationService = notificationServiceMock
     }
 
     def cleanup() {

@@ -89,4 +89,12 @@ class AccountSpec extends Specification {
         "email@example.com" == savedAccount.email
         TestInputs.pounds(200) == savedAccount.balance
     }
+
+    void "decrease (guess what?) decreases the balance by the specified amount"(){
+        when:
+        account.decrease(TestInputs.pounds(50))
+
+        then:
+        TestInputs.pounds(150) == account.balance
+    }
 }
