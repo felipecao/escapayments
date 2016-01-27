@@ -7,6 +7,6 @@ import org.joda.money.Money
  */
 class Pounds {
     static Money amount(Integer amount) {
-        return Money.parse("GBP 200")
+        return Money.parse("GBP $amount")
     }
 }
