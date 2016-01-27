@@ -10,12 +10,12 @@ import spock.lang.Stepwise
 @Stepwise
 class AccountDetailsSpec extends GebReportingSpec {
 
-    def "there are two accounts"(){
+    def "there are three accounts"(){
         when:
         to AccountsList
 
         then:
-        accountRows.size() == 2
+        accountRows.size() == 3
     }
 
 }
