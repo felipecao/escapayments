@@ -16,7 +16,7 @@
     </ul>
 </div>
 <div id="transfer-sum" class="content scaffold-create" role="main">
-    <h1><g:message code="default.create.label" args="[entityName]" /></h1>
+    <h1><g:message code="default.pay.label" default="Transfer sum" /></h1>
     <g:if test="${flash.message}">
         <div class="message" role="status">${flash.message}</div>
     </g:if>
@@ -27,7 +27,7 @@
             </g:eachError>
         </ul>
     </g:hasErrors>
-    <g:form controller="account" action="submitTransfer" >
+    <g:form controller="account" action="submitPay" >
         <fieldset class="form">
 
             <div class="fieldcontain ${hasErrors(bean: transactionInstance, field: 'from', 'error')} required">

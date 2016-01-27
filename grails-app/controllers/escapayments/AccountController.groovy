@@ -1,11 +1,14 @@
 package escapayments
 
+import org.joda.money.Money
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class AccountController {
+
+    def transactionService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -92,9 +95,21 @@ class AccountController {
         }
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     def pay() {
         render(view: 'pay')
+    }
+
+    @Transactional
+    def submitPay() {
+        Account from = Account.get(params.from)
+        Account to = Account.get(params.to)
+        Money amount = Pounds.amount(Integer.valueOf(params.amount))
+        Transaction transaction = transactionService.transferAmountFromAccountToAnotherAccount(amount, from, to)
+
+        flash.message = "Your transaction was successful!"
+
+        redirect(action: 'pay')
     }
 
     protected void notFound() {

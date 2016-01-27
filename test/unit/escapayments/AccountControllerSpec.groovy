@@ -2,6 +2,7 @@ package escapayments
 
 
 import grails.test.mixin.*
+import org.joda.money.Money
 import spock.lang.*
 
 @TestFor(AccountController)
@@ -192,12 +193,21 @@ class AccountControllerSpec extends Specification {
     }
 
     void "submitPay invokes TransactionService and sends back to the previous page with a success message"(){
+        given:
+        Account from = TestInputs.buildFromAccount()
+        Account to = TestInputs.buildToAccount()
+
+        and:
+        params.from = from.id
+        params.to = to.id
+        params.amount = 20
+
         when:
         controller.submitPay()
 
         then:
-        Transaction.count() == 1
-        response.redirectedUrl == '/account/pay'
-        flash.message != null
+        '/account/pay' == response.redirectedUrl
+        "Your transaction was successful!" == flash.message
+        1 * transactionServiceMock.transferAmountFromAccountToAnotherAccount(Pounds.amount(20), from, to)
     }
 }
