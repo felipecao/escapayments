@@ -2,20 +2,22 @@ package escapayments
 
 import org.joda.money.Money
 import spock.lang.Specification
+import spock.lang.Unroll
 
 /**
  * Created by felipe on 1/27/16.
  */
+@Unroll
 class PoundsSpec extends Specification {
 
-    def "amount returns a money instance of 200"(){
+    def "amount returns a money instance of #amount"(){
         expect:
-        Money.parse("GBP 200") == Pounds.amount(200)
-    }
+        Money.parse(str) == Pounds.amount(amt)
 
-    def "amount returns a money instance of 500"(){
-        expect:
-        Money.parse("GBP 500") == Pounds.amount(500)
+        where:
+        str       | amt
+        "GBP 200" | 200
+        "GBP 500" | 500
     }
 
 }
