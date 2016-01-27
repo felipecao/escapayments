@@ -18,14 +18,20 @@ class Account {
     }
 
     void decrease(Money amount) {
-        if(amount.isGreaterThan(Pounds.amount(0))){
+        ensureAmountIsPositiveAndPerformOperation(amount) {
             balance = balance.minus(amount)
         }
     }
 
     void increase(Money amount) {
-        if(amount.isGreaterThan(Pounds.amount(0))){
+        ensureAmountIsPositiveAndPerformOperation(amount) {
             balance = balance.plus(amount)
+        }
+    }
+
+    void ensureAmountIsPositiveAndPerformOperation(Money amount, Closure closure){
+        if(amount.isGreaterThan(Pounds.amount(0))){
+            closure.run()
         }
     }
 }
