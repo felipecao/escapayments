@@ -121,4 +121,17 @@ class AccountSpec extends Specification {
         then:
         Pounds.amount(170) == account.balance
     }
+
+    void "decrease decreases the balance by 20 and save keeps the updated balance"(){
+        given:
+        account.name = "test account"
+        account.email = "email@example.com"
+        account.decrease(Pounds.amount(20))
+
+        when:
+        Account savedAccount = account.save(failOnError: true)
+
+        then:
+        Pounds.amount(180) == savedAccount.balance
+    }
 }
