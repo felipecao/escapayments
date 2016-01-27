@@ -5,7 +5,10 @@ import grails.transaction.Transactional
 @Transactional
 class NotificationService {
 
-    def sendConfirmationEmailToAccountHolders(Transaction transaction) {
+    def mailService
 
+    void sendConfirmationEmailToAccountHolders(Transaction transaction) {
+        mailService.sendMail {}
+        mailService.sendMail {}
     }
 }

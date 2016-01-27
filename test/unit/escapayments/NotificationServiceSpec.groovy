@@ -16,6 +16,8 @@ class NotificationServiceSpec extends Specification {
 
     def setup() {
         mailServiceMock = Mock()
+
+        service.mailService = mailServiceMock
     }
 
     void "when a confirmation e-mail is sent, mailService is invoked twice, one for each account holder involved in the transaction"() {
