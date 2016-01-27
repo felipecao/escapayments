@@ -13,4 +13,9 @@ class PoundsSpec extends Specification {
         Money.parse("GBP 200") == Pounds.amount(200)
     }
 
+    def "amount returns a money instance of 500"(){
+        expect:
+        Money.parse("GBP 500") == Pounds.amount(500)
+    }
+
 }
