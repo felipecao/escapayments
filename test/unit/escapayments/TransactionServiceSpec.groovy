@@ -29,7 +29,7 @@ class TransactionServiceSpec extends Specification {
         Account to = TestInputs.buildToAccount()
 
         and: 'specify an amount less than or equal to the balance of the From account'
-        Money amount = TestInputs.pounds(200)
+        Money amount = Pounds.amount(200)
 
         when: 'the transaction is performed'
         Transaction transaction = service.transferAmountFromAccountToAnotherAccount(amount, from, to)
@@ -38,10 +38,10 @@ class TransactionServiceSpec extends Specification {
         !transaction.hasErrors()
 
         and: 'the balance of the From account decreases by the amount specified'
-        TestInputs.pounds(0) == Account.read(from.id).balance
+        Pounds.amount(0) == Account.read(from.id).balance
 
         and: 'the balance of the From account increases by the amount specified'
-        TestInputs.pounds(400) == Account.read(to.id).balance
+        Pounds.amount(400) == Account.read(to.id).balance
 
         and: 'an email is sent to both account holders confirming the transference'
         1 * notificationServiceMock.sendConfirmationEmailToAccountHolders(transaction)
@@ -55,7 +55,7 @@ class TransactionServiceSpec extends Specification {
         Account to = TestInputs.buildToAccount()
 
         and: 'specify an amount greater than the balance of the From account'
-        Money amount = TestInputs.pounds(201)
+        Money amount = Pounds.amount(201)
 
         when: 'the transaction is performed'
         Transaction transaction = service.transferAmountFromAccountToAnotherAccount(amount, from, to)
@@ -64,10 +64,10 @@ class TransactionServiceSpec extends Specification {
         transaction.hasErrors()
 
         and: 'the balance of the From account remains unchanged'
-        TestInputs.pounds(200) == Account.read(from.id).balance
+        Pounds.amount(200) == Account.read(from.id).balance
 
         and: 'the balance of the From account remains unchanged'
-        TestInputs.pounds(200) == Account.read(to.id).balance
+        Pounds.amount(200) == Account.read(to.id).balance
 
         and: 'no email is sent'
         0 * notificationServiceMock.sendConfirmationEmailToAccountHolders(_ as Transaction)

@@ -26,7 +26,7 @@ class NotificationServiceSpec extends Specification {
         Transaction transaction = new Transaction(
                 from: TestInputs.buildFromAccount(),
                 to: TestInputs.buildToAccount(),
-                amount: TestInputs.pounds(100)
+                amount: Pounds.amount(100)
         )
 
         when:

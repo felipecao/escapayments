@@ -6,7 +6,7 @@ class Account {
 
     String name
     String email
-    private Money balance = Money.parse("GBP 200")
+    private Money balance = Pounds.amount(200)
 
     static constraints = {
         name blank: false
@@ -18,7 +18,7 @@ class Account {
     }
 
     void decrease(Money amount) {
-        if(amount.isGreaterThan(Money.parse("GBP 0"))){
+        if(amount.isGreaterThan(Pounds.amount(0))){
             balance = balance.minus(amount)
         }
     }

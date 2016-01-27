@@ -73,7 +73,7 @@ class AccountSpec extends Specification {
 
     void "starting balance is 200 pounds"() {
         expect:
-        TestInputs.pounds(200) == account.balance
+        Pounds.amount(200) == account.balance
     }
 
     void "an Account with non-blank name and valid e-mail address is valid and starts with GBP 200"() {
@@ -87,38 +87,38 @@ class AccountSpec extends Specification {
         then:
         "test account" == savedAccount.name
         "email@example.com" == savedAccount.email
-        TestInputs.pounds(200) == savedAccount.balance
+        Pounds.amount(200) == savedAccount.balance
     }
 
     void "decrease (guess what?) decreases the balance by 50"(){
         when:
-        account.decrease(TestInputs.pounds(50))
+        account.decrease(Pounds.amount(50))
 
         then:
-        TestInputs.pounds(150) == account.balance
+        Pounds.amount(150) == account.balance
     }
 
     void "balance remains the same when decrease by 0"(){
         when:
-        account.decrease(TestInputs.pounds(0))
+        account.decrease(Pounds.amount(0))
 
         then:
-        TestInputs.pounds(200) == account.balance
+        Pounds.amount(200) == account.balance
     }
 
     void "balance remains the same when decrease by negative number"(){
         when:
-        account.decrease(TestInputs.pounds(-10))
+        account.decrease(Pounds.amount(-10))
 
         then:
-        TestInputs.pounds(200) == account.balance
+        Pounds.amount(200) == account.balance
     }
 
     void "decrease decreases the balance by 30"(){
         when:
-        account.decrease(TestInputs.pounds(30))
+        account.decrease(Pounds.amount(30))
 
         then:
-        TestInputs.pounds(170) == account.balance
+        Pounds.amount(170) == account.balance
     }
 }

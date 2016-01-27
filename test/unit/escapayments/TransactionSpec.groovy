@@ -48,7 +48,7 @@ class TransactionSpec extends Specification {
         given:
         transaction.from = TestInputs.buildFromAccount()
         transaction.to = TestInputs.buildToAccount()
-        transaction.amount = TestInputs.pounds(201)
+        transaction.amount = Pounds.amount(201)
 
         when:
         transaction.validate()
@@ -65,7 +65,7 @@ class TransactionSpec extends Specification {
         and:
         transaction.from = from
         transaction.to = to
-        transaction.amount = TestInputs.pounds(200)
+        transaction.amount = Pounds.amount(200)
 
         when:
         Transaction savedTransaction = transaction.save(failOnError: true)
@@ -73,7 +73,7 @@ class TransactionSpec extends Specification {
         then:
         from == savedTransaction.from
         to == savedTransaction.to
-        Money.parse("GBP 200") == transaction.amount
+        Pounds.amount(200) == transaction.amount
     }
 
 

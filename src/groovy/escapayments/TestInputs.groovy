@@ -14,8 +14,4 @@ class TestInputs {
     static Account buildToAccount(){
         return new Account(name: "to", email: "to@account.com").save(failOnError: true)
     }
-
-    static Money pounds(Integer amount){
-        return Money.parse("GBP $amount")
-    }
 }
