@@ -16,8 +16,16 @@ class TransactionService {
                 amount: amount
         )
 
+        transaction.save()
+
         from.decrease(amount)
         to.increase(amount)
+
+        from.save()
+        to.save()
+
         notificationService.sendConfirmationEmailToAccountHolders()
+
+        return transaction
     }
 }
