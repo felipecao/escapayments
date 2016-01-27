@@ -90,7 +90,7 @@ class AccountSpec extends Specification {
         TestInputs.pounds(200) == savedAccount.balance
     }
 
-    void "decrease (guess what?) decreases the balance by the specified amount"(){
+    void "decrease (guess what?) decreases the balance by 50"(){
         when:
         account.decrease(TestInputs.pounds(50))
 
@@ -112,5 +112,13 @@ class AccountSpec extends Specification {
 
         then:
         TestInputs.pounds(200) == account.balance
+    }
+
+    void "decrease decreases the balance by 30"(){
+        when:
+        account.decrease(TestInputs.pounds(30))
+
+        then:
+        TestInputs.pounds(170) == account.balance
     }
 }
