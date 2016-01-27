@@ -95,6 +95,16 @@ class AccountController {
         }
     }
 
+    protected void notFound() {
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.not.found.message', args: [message(code: 'account.label', default: 'Account'), params.id])
+                redirect action: "index", method: "GET"
+            }
+            '*' { render status: NOT_FOUND }
+        }
+    }
+
     @Transactional(readOnly = true)
     def pay() {
         render(view: 'pay')
@@ -114,15 +124,5 @@ class AccountController {
         }
 
         render(view: 'pay', model: [transactionInstance: transaction])
-    }
-
-    protected void notFound() {
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'account.label', default: 'Account'), params.id])
-                redirect action: "index", method: "GET"
-            }
-            '*' { render status: NOT_FOUND }
-        }
     }
 }
