@@ -16,4 +16,8 @@ class Account {
     public Money getBalance(){
         return balance
     }
+
+    void decrease(Money amount) {
+        balance = balance.minus(amount)
+    }
 }
