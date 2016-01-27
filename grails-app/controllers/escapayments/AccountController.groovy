@@ -92,6 +92,11 @@ class AccountController {
         }
     }
 
+    @Transactional
+    def pay() {
+        render(view: 'pay')
+    }
+
     protected void notFound() {
         request.withFormat {
             form multipartForm {

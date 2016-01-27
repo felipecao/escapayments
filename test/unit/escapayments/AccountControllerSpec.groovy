@@ -174,4 +174,12 @@ class AccountControllerSpec extends Specification {
         model.accountInstance == accountFrom
         model.transactionsForTheSelectedAccount == [Transaction.first(), Transaction.last()]
     }
+
+    void "pay renders pay view"(){
+        when:
+        controller.pay()
+
+        then:
+        view == '/account/pay'
+    }
 }
