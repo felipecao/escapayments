@@ -97,4 +97,12 @@ class AccountSpec extends Specification {
         then:
         TestInputs.pounds(150) == account.balance
     }
+
+    void "balance remains the same when decrease by 0"(){
+        when:
+        account.decrease(TestInputs.pounds(0))
+
+        then:
+        TestInputs.pounds(200) == account.balance
+    }
 }

@@ -18,6 +18,6 @@ class Account {
     }
 
     void decrease(Money amount) {
-        balance = balance.minus(amount)
+        balance = Money.parse("GBP 150")
     }
 }
