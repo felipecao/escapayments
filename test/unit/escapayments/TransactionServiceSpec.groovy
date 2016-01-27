@@ -13,9 +13,11 @@ import spock.lang.Specification
 class TransactionServiceSpec extends Specification {
 
     NotificationService notificationServiceMock = Mock()
+    Transaction transaction
 
     def setup() {
         service.notificationService = notificationServiceMock
+        transaction = null
     }
 
     def cleanup() {
@@ -32,7 +34,7 @@ class TransactionServiceSpec extends Specification {
         Money amount = Pounds.amount(200)
 
         when: 'the transaction is performed'
-        Transaction transaction = service.transferAmountFromAccountToAnotherAccount(amount, from, to)
+        transaction = service.transferAmountFromAccountToAnotherAccount(amount, from, to)
 
         then: 'the transaction succeeds'
         !transaction.hasErrors()
@@ -58,7 +60,7 @@ class TransactionServiceSpec extends Specification {
         Money amount = Pounds.amount(201)
 
         when: 'the transaction is performed'
-        Transaction transaction = service.transferAmountFromAccountToAnotherAccount(amount, from, to)
+        transaction = service.transferAmountFromAccountToAnotherAccount(amount, from, to)
 
         then: 'the transaction fails'
         transaction.hasErrors()
