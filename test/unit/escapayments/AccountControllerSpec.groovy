@@ -5,17 +5,16 @@ import grails.test.mixin.*
 import spock.lang.*
 
 @TestFor(AccountController)
-@Mock(Account)
+@Mock([Account, Transaction])
 class AccountControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
-        // TODO: Populate valid properties like...
-        //params["name"] = 'someValidName'
+        params["name"] = 'some name'
+        params["email"] = 'email@example.com'
     }
 
     void "Test the index action returns the correct model"() {
-
         when: "The index action is executed"
         controller.index()
 
