@@ -196,11 +196,21 @@ class AccountControllerSpec extends Specification {
         given:
         Account from = TestInputs.buildFromAccount()
         Account to = TestInputs.buildToAccount()
+        Integer amount = 20
+
+        and:
+        Transaction success = new Transaction(
+                from: from,
+                to: to,
+                amount: Pounds.amount(amount)
+        )
+
+        success.validate()
 
         and:
         params.from = from.id
         params.to = to.id
-        params.amount = 20
+        params.amount = amount
 
         when:
         controller.submitPay()
@@ -208,7 +218,7 @@ class AccountControllerSpec extends Specification {
         then:
         '/account/pay' == response.redirectedUrl
         "Your transaction was successful!" == flash.message
-        1 * transactionServiceMock.transferAmountFromAccountToAnotherAccount(Pounds.amount(20), from, to)
+        1 * transactionServiceMock.transferAmountFromAccountToAnotherAccount(Pounds.amount(amount), from, to) >> success
     }
 
     void "submitPay invokes TransactionService and presents an error message"(){
@@ -235,8 +245,7 @@ class AccountControllerSpec extends Specification {
         controller.submitPay()
 
         then:
-        '/account/pay' == response.redirectedUrl
-        "Your transaction has failed" == flash.message
+        view == '/account/pay'
         1 * transactionServiceMock.transferAmountFromAccountToAnotherAccount(Pounds.amount(amount), from, to) >> failure
     }
 }

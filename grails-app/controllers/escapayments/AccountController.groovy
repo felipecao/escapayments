@@ -107,9 +107,13 @@ class AccountController {
         Money amount = Pounds.amount(Integer.valueOf(params.amount))
         Transaction transaction = transactionService.transferAmountFromAccountToAnotherAccount(amount, from, to)
 
-        flash.message = "Your transaction was successful!"
+        if(!transaction.hasErrors()){
+            flash.message = "Your transaction was successful!"
+            redirect(action: 'pay')
+            return
+        }
 
-        redirect(action: 'pay')
+        render(view: 'pay', model: [transactionInstance: transaction])
     }
 
     protected void notFound() {

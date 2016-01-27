@@ -12,7 +12,6 @@
 <div class="nav" role="navigation">
     <ul>
         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-        <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
     </ul>
 </div>
 <div id="transfer-sum" class="content scaffold-create" role="main">
@@ -35,7 +34,7 @@
                     <g:message code="account.from.label" default="From" />
                     <span class="required-indicator">*</span>
                 </label>
-                <g:select name="from" from="${Account.list()}" optionKey="id" optionValue="name" required="required" value="${transactionInstance?.from}"/>
+                <g:select name="from" from="${Account.list()}" optionKey="id" optionValue="name" required="required" value="${transactionInstance?.from?.id}"/>
             </div>
 
             <div class="fieldcontain ${hasErrors(bean: transactionInstance, field: 'to', 'error')} required">
@@ -43,7 +42,7 @@
                     <g:message code="account.to.label" default="To" />
                     <span class="required-indicator">*</span>
                 </label>
-                <g:select name="to" from="${Account.list()}" optionKey="id" optionValue="name" required="required" value="${transactionInstance?.to}"/>
+                <g:select name="to" from="${Account.list()}" optionKey="id" optionValue="name" required="required" value="${transactionInstance?.to?.id}"/>
             </div>
 
             <div class="fieldcontain ${hasErrors(bean: transactionInstance, field: 'amount', 'error')} required">
