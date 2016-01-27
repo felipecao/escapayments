@@ -19,7 +19,7 @@ class Account {
 
     void decrease(Money amount) {
         if(amount.isGreaterThan(Money.parse("GBP 0"))){
-            balance = Money.parse("GBP 150")
+            balance = balance.minus(amount)
         }
     }
 }
