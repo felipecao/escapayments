@@ -22,4 +22,10 @@ class Account {
             balance = balance.minus(amount)
         }
     }
+
+    void increase(Money amount) {
+        if(amount.isGreaterThan(Pounds.amount(0))){
+            balance = balance.plus(amount)
+        }
+    }
 }
