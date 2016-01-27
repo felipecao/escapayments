@@ -50,7 +50,7 @@
                     <g:message code="account.amount.label" default="Amount" />
                     <span class="required-indicator">*</span>
                 </label>
-                <g:textField name="amount" placeholder="GBP" required="required" value="${transactionInstance?.amount}"/>
+                <g:textField name="amount" placeholder="GBP" required="required" value="${transactionInstance?.amount?.amountMajorInt}"/>
             </div>
 
         </fieldset>
