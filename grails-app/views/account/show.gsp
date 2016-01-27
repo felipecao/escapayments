@@ -40,7 +40,23 @@
 					
 				</li>
 				</g:if>
-			
+
+				<li class="fieldcontain">
+					<span id="transactions-label" class="property-label"><g:message code="account.transactions.label" default="Transactions" /></span>
+
+                    <g:if test="${transactionsForTheSelectedAccount}">
+                        <ul>
+                            <g:each in="${transactionsForTheSelectedAccount}" var="txn">
+                                <li>${txn.id} - ${txn.amount.toString()}</li>
+                            </g:each>
+                        </ul>
+                    </g:if>
+                    <g:else>
+                        <span class="property-value" aria-labelledby="email-label"><strong><g:message code="account.transactions.missing.label" default="This account has no transactions" /></strong></span>
+                    </g:else>
+
+				</li>
+
 			</ol>
 			<g:form url="[resource:accountInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">

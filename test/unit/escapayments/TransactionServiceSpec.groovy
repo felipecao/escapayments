@@ -20,9 +20,6 @@ class TransactionServiceSpec extends Specification {
         transaction = null
     }
 
-    def cleanup() {
-    }
-
     void "when an account A has enough money to be transferred to an account B, then an email is sent to both account holders and values are properly updated on accounts"() {
         given: 'I select a From account'
         Account from = TestInputs.buildFromAccount()

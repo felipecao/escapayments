@@ -29,7 +29,7 @@ class TransactionService {
         from.save()
         to.save()
 
-        notificationService.sendConfirmationEmailToAccountHolders()
+        notificationService.sendConfirmationEmailToAccountHolders(transaction)
 
         return transaction
     }

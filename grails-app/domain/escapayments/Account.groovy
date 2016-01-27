@@ -6,15 +6,11 @@ class Account {
 
     String name
     String email
-    private Money balance = Pounds.amount(200)
+    Money balance = Pounds.amount(200)
 
     static constraints = {
         name blank: false
         email blank: false, email: true
-    }
-
-    public Money getBalance(){
-        return balance
     }
 
     void decrease(Money amount) {

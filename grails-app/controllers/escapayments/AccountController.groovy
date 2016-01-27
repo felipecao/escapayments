@@ -15,7 +15,8 @@ class AccountController {
     }
 
     def show(Account accountInstance) {
-        respond accountInstance
+        List<Transaction> transactionsForTheSelectedAccount = Transaction.findAllByFromOrTo(accountInstance, accountInstance)
+        respond accountInstance, model: [transactionsForTheSelectedAccount: transactionsForTheSelectedAccount]
     }
 
     def create() {
