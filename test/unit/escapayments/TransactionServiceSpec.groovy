@@ -43,7 +43,7 @@ class TransactionServiceSpec extends Specification {
         Pounds.amount(400) == Account.read(to.id).balance
 
         and: 'an email is sent to both account holders confirming the transference'
-        1 * notificationServiceMock.sendConfirmationEmailToAccountHolders(transaction)
+        1 * notificationServiceMock.sendConfirmationEmailToAccountHolders(_ as Transaction)
     }
 
     void "when an account A does not have enough money to be transferred to an account B, then no email is sent and balances remain unchanged on accounts"() {
