@@ -71,6 +71,7 @@ class AccountControllerSpec extends Specification {
 
         then: "A model is populated containing the domain instance"
         model.accountInstance == account
+        model.transactionsForTheSelectedAccount == []
     }
 
     void "Test that the edit action returns the correct model"() {
@@ -146,5 +147,31 @@ class AccountControllerSpec extends Specification {
         Account.count() == 0
         response.redirectedUrl == '/account/index'
         flash.message != null
+    }
+
+    void "show action presents both account and its transactions"(){
+        given:
+        Account accountFrom = TestInputs.buildFromAccount()
+
+        and:
+        new Transaction(
+                from: accountFrom,
+                to: TestInputs.buildToAccount(),
+                amount: Pounds.amount(100)
+        ).save(flush: true, failOnError: true)
+
+        and:
+        new Transaction(
+                from: accountFrom,
+                to: TestInputs.buildToAccount(),
+                amount: Pounds.amount(100)
+        ).save(flush: true, failOnError: true)
+
+        when:
+        controller.show(accountFrom)
+
+        then:
+        model.accountInstance == accountFrom
+        model.transactionsForTheSelectedAccount == [Transaction.first(), Transaction.last()]
     }
 }
