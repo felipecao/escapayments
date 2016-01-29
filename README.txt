@@ -16,3 +16,11 @@ Run 'grails run-app'. On the home page you'll find two options:
     provides a link for the selection of account, in which page the list of transactions can be visualized (AC #2).
 
 # Transfer sum: enables the user to perform a transfer of a given amount between 2 accounts (AC #3, 4, 5)
+
+
+== About the domain classes ==
+
+On Account domain class, I tried to make account attribute private, and only modifiable via the decrease() and increase()
+    methods (in my head, it makes sense for the balance to get update only by adding or withdrawing money, it wouldn't make
+    much sense to just set balance to a random value), but unfortunately it was not possible, I had all sorts of trouble
+    with the way GORM works.  
