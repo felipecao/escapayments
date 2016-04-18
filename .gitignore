@@ -11,3 +11,4 @@ build/
 .classpath
 target/
 .asscache
+out/

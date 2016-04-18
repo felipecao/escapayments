@@ -21,7 +21,7 @@ Transferring sums between accounts is a common task in many financial organisati
 
 Just run a regular 'grails test-app'. This will run several unit specs and one functional spec (sorry, I didn't have enough time to add more functional specs).
 
-IMPORTANT: you need to have Google Chrome installed for the functional spec to run.
+IMPORTANT: you need to have Google Chrome installed for the functional spec to run and have chromedriver running.
 
 ### Running the app
 
